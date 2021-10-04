@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.10.4)  4 OCT 2021 14:36
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.10.4)  4 OCT 2021 14:59
 entering extended mode
 **./Main.tex
 (Main.tex
@@ -424,7 +424,9 @@ tex.def
 File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count282
 \l__pdf_internal_box=\box56
-) (Main.aux (content/001_Analyse.aux) (content/002_Entwurf.aux))
+) (Main.aux (content/001_Analyse.aux) (content/002_Entwurf.aux)
+(content/003_Implementierung.aux) (content/004_Dokumentation.aux)
+(content/005_Fazit.aux))
 \openout1 = `Main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -549,7 +551,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--20
 
  []
 
-<img/entwurf.png, id=57, 520.94624pt x 243.15843pt>
+<img/entwurf.png, id=87, 520.94624pt x 243.15843pt>
 File: img/entwurf.png Graphic file (type png)
 <use img/entwurf.png>
 Package pdftex.def Info: img/entwurf.png  used on input line 29.
@@ -568,7 +570,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--43
 
  []
 
-<img/mainpap.png, id=62, 493.845pt x 541.27219pt>
+<img/mainpap.png, id=92, 493.845pt x 541.27219pt>
 File: img/mainpap.png Graphic file (type png)
 <use img/mainpap.png>
 Package pdftex.def Info: img/mainpap.png  used on input line 46.
@@ -581,19 +583,40 @@ Overfull \hbox (65.44128pt too wide) in paragraph at lines 46--47
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [6 <./img/entwurf.png>] [7 <./img/mainpap.png>] (Main.aux
-(content/001_Analyse.aux) (content/002_Entwurf.aux))
+) [6 <./img/entwurf.png>] [7 <./img/mainpap.png>]
+\openout2 = `content/003_Implementierung.aux'.
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
+(content/003_Implementierung.tex) [8
+
+
+
+]
+\openout2 = `content/004_Dokumentation.aux'.
+
+ (content/004_Dokumentation.tex) [9
+
+
+
+]
+\openout2 = `content/005_Fazit.aux'.
+
+
+(content/005_Fazit.tex) [10
+
+
+
+] (Main.aux (content/001_Analyse.aux)
+(content/002_Entwurf.aux) (content/003_Implementierung.aux)
+(content/004_Dokumentation.aux) (content/005_Fazit.aux))
 Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13009 strings out of 478864
- 220231 string characters out of 2848660
- 686888 words of memory out of 3000000
- 30719 multiletter control sequences out of 15000+600000
+ 13081 strings out of 478864
+ 222025 string characters out of 2848660
+ 691888 words of memory out of 3000000
+ 30752 multiletter control sequences out of 15000+600000
  410337 words of font info for 51 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,9n,108p,10619b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -603,9 +626,9 @@ ts/cm/cmbx10.pfb><C:/Users/PC502/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmr10.pfb><C:/Users/PC502/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/public/amsfonts/cm/cmr12.pfb><C:/Users/PC502/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
-Output written on Main.pdf (7 pages, 4226279 bytes).
+Output written on Main.pdf (10 pages, 4239565 bytes).
 PDF statistics:
- 145 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 120 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 237 PDF objects out of 1000 (max. 8388607)
+ 44 named destinations out of 1000 (max. 500000)
+ 240 words of extra memory for PDF output out of 10000 (max. 10000000)
 
