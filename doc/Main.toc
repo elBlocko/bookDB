@@ -1,0 +1,15 @@
+\babel@toc {ngerman}{}
+\contentsline {section}{\numberline {1}Analyse}{3}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Anforderung an das Programm}{3}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Eigenschaften eines Buches}{3}{subsubsection.1.1.1}%
+\contentsline {subsection}{\numberline {1.2}Anwendungsfälle}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Projektbegründung}{4}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Programmschnittstellen}{4}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Projektphasen}{4}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Entwicklungsprozess}{4}{subsection.1.6}%
+\contentsline {section}{\numberline {2}Entwurf}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Zielplattform}{5}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Architekturdesign}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Entwurf der Benutzeroberflächen}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Datenmodell}{6}{subsection.2.4}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

@@ -1,0 +1,66 @@
+
+\section{Analyse}
+
+\subsection{Anforderung an das Programm}
+Es wird ein neues Programm von Beginn an entwickelt.\\
+Das Programm soll eine Bücherliste tabellarisch darstellen.
+Jedes Buch soll mehrere Eigenschaften besitzen und diese sollen mit dargestellt werden.
+\\
+Dem Programm soll eine Datenbank zugrunde liegen aus der zu Programmstart geladen wird.\\
+Über eine Maske sollen neue Bücher hinzugefügt werden können und ausgewählte Bücher müssen gelöscht werden können. Die einzelnen Eigenschaften der Felder müssen geändert werden können.
+\\ 
+Über ein Eingabefeld soll eine Suche nach der ISBN Nummer möglich sein.\\
+Gefundene Ergebnisse sollen angezeigt werden und bei bedarf der Bücherliste hinzugefügt werden können.\\
+
+\subsubsection{Eigenschaften eines Buches}
+
+\begin{itemize}
+\item{Nummer in der Liste}
+\item{Name des Buches}
+\item{Name des Autors}
+\item{Jahr der Erstauflage}
+\item{Ort/Platz im Regal}
+\item{ISBN Nummer}
+\end{itemize}
+
+\subsection{Anwendungsfälle}
+Es soll für einen Einzelplatz für einen Anwender mit einer privaten Büchersammlung entwickelt werden.
+
+\subsection{Projektbegründung}
+Bei einer Büchersammlung ist es Sinnvoll einen geordneten Überblick zu haben.
+Vor allem um Bücher schnell zu finden sowohl für Bücher im Bestand als auch für neue Bücher, die hinzugefügt werden sollen.
+
+\subsection{Programmschnittstellen}
+Die Datenbank als Speicher ist die erste Schnittstelle.\\
+Eine geeignete online API zu einer Bücherdatenbank soll für die ISBN-Suche verwendet werden.
+
+\subsection{Projektphasen}
+\begin{center}
+\begin{table} [htb] % table hat mehr Eigensachaften, z.B. Caption
+\centering
+\begin{tabular}{  l  r  }
+\hline
+\rowcolor{cyan}\textbf{Projektphase}&\textbf{geplante Zeit}\\
+\hline
+Analysephase&8h\\
+\rowcolor{lightgray}Entwurfsphase&8h\\
+Implementierungsphase&16h\\
+\rowcolor{lightgray}Dokumentation&8h\\
+\hline
+\textbf{Gesamt}&\textbf{40h}\\
+\hline
+\end{tabular}
+\caption{Projektphasen}
+\label{tab:Projektphasen}
+\end{table}
+\end{center}
+
+\subsection{Entwicklungsprozess}
+Bei der Bearbeitung des Projekts wird das Wasserfallmodel verfolgt.
+Vom Problem zum Programm in folgenden Schritten:
+\begin{itemize}
+\item{Analyse}
+\item{Entwurf}
+\item{Implementierung}
+\item{Test}
+\end{itemize}

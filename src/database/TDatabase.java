@@ -5,6 +5,7 @@ import logic.*;
 
 public class TDatabase {
 	public static final TDatabase TDatabase = new TDatabase();
+	// sqlite jdbc in build path hinzufügen
 	public static Connection connection;
 	// private static final String DB_PATH = System.getProperty("user.home") + "/" +
 	// "testdb.db";
