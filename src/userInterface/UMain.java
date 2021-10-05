@@ -19,8 +19,16 @@ import javax.swing.JTextField;
 import java.awt.Dimension;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class UMain extends JFrame {
 
@@ -39,6 +47,11 @@ public class UMain extends JFrame {
 	private JButton btnAdd;
 	private JButton btnDelete;
 	private JButton btnEdit;
+	
+	public TAuthorList Authorlist1;
+	public TLocationList Locationlist1;
+	public TGenreList Genrelist1;
+	public TBooksList Bookslist1;
 	
 	// INIT GRID HEADERS
 	Object[] columns = { "Buchtitel", "Autor", "Genre", "Erscheinungsjahr", "Isbn", "Regalplatz" };
@@ -69,6 +82,26 @@ public class UMain extends JFrame {
 	 * Create the frame.
 	 */
 	public UMain() {
+		addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+				// JOptionPane.showMessageDialog(null,"open window");
+				connectDatabase();
+				createLists();
+				setListContent();
+				setGridContent();
+				
+			}
+			@Override
+			public void windowClosed(WindowEvent e) {				
+				try {
+					TDatabase.connection.close();
+					
+				} catch (SQLException e1) {
+					JOptionPane.showMessageDialog(null,e1);
+				}
+			}
+		});
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 810, 576);
@@ -86,6 +119,7 @@ public class UMain extends JFrame {
 		scrollPane.setBounds(10, 55, 774, 202);
 		contentPane.add(scrollPane);
 		grdMain = new JTable();
+		
 		// my Method
 		setGrdMainHeader();
 		scrollPane.setViewportView(grdMain);
@@ -140,6 +174,7 @@ public class UMain extends JFrame {
 		btnEdit = new JButton("bearbeiten");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
 			}
 		});
 		tbTools.add(btnEdit);
@@ -286,6 +321,43 @@ public class UMain extends JFrame {
 		rowList[5] = txtLocation.getText();
 		
 		modelList.addRow(rowList);
+		
+	}
+	
+	void connectDatabase() {
+		// establish connection to database
+		TDatabase database1 = TDatabase.getInstance();
+		database1.connect();
+	}
+	void createLists() {
+		Authorlist1 = new TAuthorList(new ArrayList<TAuthor>()); // init
+		Locationlist1 = new TLocationList(new ArrayList<TLocation>()); // init
+		Genrelist1 = new TGenreList(new ArrayList<TGenre>()); // init
+		Bookslist1 = new TBooksList(new ArrayList<TBook>()); // init
+		
+	}
+	void setListContent() {
+		Authorlist1.setContent(); // fill list
+		Locationlist1.setContent(); // fill list
+		Genrelist1.setContent(); // fill list
+		Bookslist1.setContent(Authorlist1,Locationlist1,Genrelist1); // fill list
+	}
+	
+	void setGridContent() {
+		
+		for (int i = 0; i < Bookslist1.size(); i++) {		
+		
+			
+			rowList[0] = Bookslist1.get(i).getName();
+			rowList[1] = Bookslist1.get(i).getAuthor().getName();
+			rowList[2] = Bookslist1.get(i).getGenre().getName();
+			rowList[3] = Bookslist1.get(i).getYear();
+			rowList[4] = Bookslist1.get(i).getIsbn();
+			rowList[5] = Bookslist1.get(i).getLocation().getName();
+			
+			modelList.addRow(rowList);
+			
+		}
 		
 	}
 

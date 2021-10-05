@@ -33,10 +33,9 @@ public class TAuthorList extends ArrayList<TAuthor> {
             	this.add(tempArtist); // objekt der Liste zufügen           	
             }
             rs.close();
-            TDatabase.connection.close();
+            // TDatabase.connection.close();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null,"Fehler beim Laden der Daten in die Artist Liste");
 		}
 
