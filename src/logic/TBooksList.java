@@ -76,4 +76,18 @@ public class TBooksList extends ArrayList<TBook> {
 
 	}
 
+	public void delete(int ID) {
+		String sql = "DELETE FROM [tblBooks] WHERE PKid = " + ID + ";";
+		try {
+			Statement stmt = TDatabase.connection.createStatement();
+			// execute the delete statement
+			stmt.executeUpdate(sql);
+			stmt.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Fehler beim löschen der Daten in der Bücher Liste");
+		}
+
+	}
+
+	
 }

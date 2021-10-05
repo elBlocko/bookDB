@@ -14,29 +14,41 @@ public class TAuthorList extends ArrayList<TAuthor> {
 		this.FArtistList = AArtistList;
 	}
 
-	// METHODEN ------------------------------------------------------------------	
-	
+	// METHODEN ------------------------------------------------------------------
+
 	public void setContent() {
 		int tempId;
-		String tempName;	
+		String tempName;
 		TAuthor tempArtist;
-		
-		try {			
+
+		try {
 			Statement stmt = TDatabase.connection.createStatement();
-			
+
 			ResultSet rs = stmt.executeQuery("SELECT * FROM [tblAuthor];");
-            while (rs.next()) {
-            	tempName = rs.getString("txtName");	// Werte holen
-            	tempId = rs.getInt("PKid");
-            	
-            	tempArtist = new TAuthor(tempId, tempName); // Objekt erstellen
-            	this.add(tempArtist); // objekt der Liste zufügen           	
-            }
-            rs.close();
-            // TDatabase.connection.close();
-			
+			while (rs.next()) {
+				tempName = rs.getString("txtName"); // Werte holen
+				tempId = rs.getInt("PKid");
+
+				tempArtist = new TAuthor(tempId, tempName); // Objekt erstellen
+				this.add(tempArtist); // objekt der Liste zufügen
+			}
+			rs.close();
+			stmt.close();
 		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null,"Fehler beim Laden der Daten in die Artist Liste");
+			JOptionPane.showMessageDialog(null, "Fehler beim Laden der Daten in die Autor Liste");
+		}
+
+	}
+
+	public void delete(int ID) {
+		String sql = "DELETE FROM [tblAuthor] WHERE PKid = " + ID + ";";
+		try {
+			Statement stmt = TDatabase.connection.createStatement();
+			// execute the delete statement
+			stmt.executeUpdate(sql);
+			stmt.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Fehler beim löschen der Daten in der Autor Liste");
 		}
 
 	}

@@ -29,6 +29,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
+import javax.swing.ListSelectionModel;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.VetoableChangeListener;
+import java.awt.event.InputMethodListener;
+import java.awt.event.InputMethodEvent;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class UMain extends JFrame {
 
@@ -43,24 +51,26 @@ public class UMain extends JFrame {
 	private JTable grdWeb;
 	private JTextField txtName;
 	private JTextField txtLocation;
-	
+
 	private JButton btnAdd;
 	private JButton btnDelete;
 	private JButton btnEdit;
-	
+
 	public TAuthorList Authorlist1;
 	public TLocationList Locationlist1;
 	public TGenreList Genrelist1;
 	public TBooksList Bookslist1;
-	
+
+	private int rowIndexGrdMain;
+
 	// INIT GRID HEADERS
-	Object[] columns = { "Buchtitel", "Autor", "Genre", "Erscheinungsjahr", "Isbn", "Regalplatz" };
+	Object[] columns = { "ID","Buchtitel", "Autor", "Genre", "Erscheinungsjahr", "Isbn", "Regalplatz" };
 	DefaultTableModel modelList = new DefaultTableModel();
 	DefaultTableModel modelWeb = new DefaultTableModel();
-	
-	Object[] rowList = new Object[6];
-	Object[] rowWeb = new Object[6];
-	
+
+	Object[] rowList = new Object[7];
+	Object[] rowWeb = new Object[7];
+
 	/**
 	 * Launch the application.
 	 */
@@ -90,15 +100,16 @@ public class UMain extends JFrame {
 				createLists();
 				setListContent();
 				setGridContent();
-				
+
 			}
+
 			@Override
-			public void windowClosed(WindowEvent e) {				
+			public void windowClosed(WindowEvent e) {
 				try {
 					TDatabase.connection.close();
-					
+
 				} catch (SQLException e1) {
-					JOptionPane.showMessageDialog(null,e1);
+					JOptionPane.showMessageDialog(null, e1);
 				}
 			}
 		});
@@ -119,9 +130,17 @@ public class UMain extends JFrame {
 		scrollPane.setBounds(10, 55, 774, 202);
 		contentPane.add(scrollPane);
 		grdMain = new JTable();
-		
+		grdMain.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				rowIndexGrdMain = grdMain.getSelectedRow();
+				//JOptionPane.showMessageDialog(null, rowIndexGrdMain);
+			}
+		});
+		grdMain.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		// my Method
 		setGrdMainHeader();
+		setColumnIdInvisible();
 		scrollPane.setViewportView(grdMain);
 
 		/*
@@ -132,6 +151,7 @@ public class UMain extends JFrame {
 		scrollPane_1.setBounds(10, 312, 774, 90);
 		contentPane.add(scrollPane_1);
 		grdWeb = new JTable();
+		grdWeb.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setGrdWebHeader();
 		scrollPane_1.setViewportView(grdWeb);
 
@@ -174,7 +194,7 @@ public class UMain extends JFrame {
 		btnEdit = new JButton("bearbeiten");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 			}
 		});
 		tbTools.add(btnEdit);
@@ -182,6 +202,7 @@ public class UMain extends JFrame {
 		btnDelete = new JButton("l\u00F6schen");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				deleteSelectedBook();
 			}
 		});
 		tbTools.add(btnDelete);
@@ -303,15 +324,15 @@ public class UMain extends JFrame {
 
 		modelList.setColumnIdentifiers(columns);
 		grdMain.setModel(modelList);
-		
+
 	}
 
 	void setGrdWebHeader() {
 		modelWeb.setColumnIdentifiers(columns);
 		grdWeb.setModel(modelWeb);
-		
+
 	}
-	
+
 	void addNewBook() {
 		rowList[0] = txtName.getText();
 		rowList[1] = txtAuthor.getText();
@@ -319,46 +340,64 @@ public class UMain extends JFrame {
 		rowList[3] = txtYear.getText();
 		rowList[4] = txtIsbn.getText();
 		rowList[5] = txtLocation.getText();
-		
+
 		modelList.addRow(rowList);
-		
+
 	}
-	
+
 	void connectDatabase() {
 		// establish connection to database
 		TDatabase database1 = TDatabase.getInstance();
 		database1.connect();
 	}
+
 	void createLists() {
 		Authorlist1 = new TAuthorList(new ArrayList<TAuthor>()); // init
 		Locationlist1 = new TLocationList(new ArrayList<TLocation>()); // init
 		Genrelist1 = new TGenreList(new ArrayList<TGenre>()); // init
 		Bookslist1 = new TBooksList(new ArrayList<TBook>()); // init
-		
+
 	}
+
 	void setListContent() {
 		Authorlist1.setContent(); // fill list
 		Locationlist1.setContent(); // fill list
 		Genrelist1.setContent(); // fill list
-		Bookslist1.setContent(Authorlist1,Locationlist1,Genrelist1); // fill list
-	}
-	
-	void setGridContent() {
-		
-		for (int i = 0; i < Bookslist1.size(); i++) {		
-		
-			
-			rowList[0] = Bookslist1.get(i).getName();
-			rowList[1] = Bookslist1.get(i).getAuthor().getName();
-			rowList[2] = Bookslist1.get(i).getGenre().getName();
-			rowList[3] = Bookslist1.get(i).getYear();
-			rowList[4] = Bookslist1.get(i).getIsbn();
-			rowList[5] = Bookslist1.get(i).getLocation().getName();
-			
-			modelList.addRow(rowList);
-			
-		}
-		
+		Bookslist1.setContent(Authorlist1, Locationlist1, Genrelist1); // fill list
 	}
 
+	void setGridContent() {
+		modelList.setRowCount(0);
+		for (int i = 0; i < Bookslist1.size(); i++) {
+
+			rowList[0] = Bookslist1.get(i).getID();
+			rowList[1] = Bookslist1.get(i).getName();
+			rowList[2] = Bookslist1.get(i).getAuthor().getName();
+			rowList[3] = Bookslist1.get(i).getGenre().getName();
+			rowList[4] = Bookslist1.get(i).getYear();
+			rowList[5] = Bookslist1.get(i).getIsbn();
+			rowList[6] = Bookslist1.get(i).getLocation().getName();
+
+			modelList.addRow(rowList);
+		}
+	}
+
+	void setColumnIdInvisible() {
+		grdMain.getColumn( "ID" ).setMinWidth( 0 );
+		grdMain.getColumn( "ID" ).setMaxWidth( 0 );		
+	}	
+
+	void deleteSelectedBook() {
+		
+		int PKid = Bookslist1.get(rowIndexGrdMain).getID();
+		Bookslist1.delete(PKid);		
+		for (TBook Book: Bookslist1) {
+			if (Book.getID() == PKid) {
+				Bookslist1.remove(Book);
+				break;
+			}
+		}		
+		setGridContent();
+	}
+	
 } // eoc
