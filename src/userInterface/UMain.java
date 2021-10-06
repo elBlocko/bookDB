@@ -38,6 +38,8 @@ import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class UMain extends JFrame {
 
@@ -57,6 +59,9 @@ public class UMain extends JFrame {
 	private JButton btnDelete;
 	private JButton btnEdit;
 	private JButton btnSave;
+
+	JButton btnListSearch;
+	JButton btnRefresh;
 
 	public TAuthorList Authorlist1;
 	public TLocationList Locationlist1;
@@ -166,17 +171,33 @@ public class UMain extends JFrame {
 		contentPane.add(tbSearchBarList);
 
 		txtListSearch = new JTextField();
+		txtListSearch.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					searchGrdMain();
+				}
+			}
+		});
 		txtListSearch.setToolTipText("");
 		tbSearchBarList.add(txtListSearch);
 		txtListSearch.setColumns(10);
 
-		JButton btnListSearch = new JButton("suchen");
+		btnListSearch = new JButton("suchen");
 		btnListSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				searchGrdMain();
 			}
 		});
 		tbSearchBarList.add(btnListSearch);
+
+		btnRefresh = new JButton("aktualisieren");
+		btnRefresh.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setGridContent();
+			}
+		});
+		tbSearchBarList.add(btnRefresh);
 
 		/*
 		 * Toolbar Tools (BUTTONS)
@@ -466,25 +487,41 @@ public class UMain extends JFrame {
 
 	void updateChanges() {
 		int PKid = Bookslist1.get(rowIndexGrdMain).getID();
+		TLocation tempLocation = Bookslist1.get(rowIndexGrdMain).getLocation();
+		int FKlocation = Bookslist1.get(rowIndexGrdMain).getLocation().getID();
+		TAuthor tempAuthor = Bookslist1.get(rowIndexGrdMain).getAuthor();
+		int FKauthor = Bookslist1.get(rowIndexGrdMain).getAuthor().getID();
+		TGenre tempGenre = Bookslist1.get(rowIndexGrdMain).getGenre();
+		int FKgenre = Bookslist1.get(rowIndexGrdMain).getGenre().getID();
+		
+		
+		
 		try {
 			if (txtLocation.getText().equals("") || txtAuthor.getText().equals("") || txtGenre.getText().equals("")
 					|| txtName.getText().equals("") || txtIsbn.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Bitte alle Felder ausfüllen");
 				return;
 			}
-
-			TLocation tempLocation = new TLocation(-1, txtLocation.getText());
-			int FKlocation = tempLocation.save(txtLocation.getText());
-			Locationlist1.add(tempLocation);
-
-			TAuthor tempAuthor = new TAuthor(-1, txtAuthor.getText());
-			int FKauthor = tempAuthor.save(txtAuthor.getText());
+			
+			if (!Bookslist1.get(rowIndexGrdMain).getLocation().getName().equals(txtLocation.getText())) {
+				tempLocation = new TLocation(-1, txtLocation.getText());
+				FKlocation = tempLocation.save(txtLocation.getText());
+				Locationlist1.add(tempLocation);
+			} 
+			
+			
+			if (!Bookslist1.get(rowIndexGrdMain).getAuthor().getName().equals(txtAuthor.getText())) {
+			tempAuthor = new TAuthor(-1, txtAuthor.getText());
+			FKauthor = tempAuthor.save(txtAuthor.getText());
 			Authorlist1.add(tempAuthor);
-
-			TGenre tempGenre = new TGenre(-1, txtGenre.getText());
-			int FKgenre = tempGenre.save(txtGenre.getText());
+			}
+			
+			if (!Bookslist1.get(rowIndexGrdMain).getGenre().getName().equals(txtGenre.getText())) {
+			tempGenre = new TGenre(-1, txtGenre.getText());
+			FKgenre = tempGenre.save(txtGenre.getText());
 			Genrelist1.add(tempGenre);
-
+			}
+			
 			String tempName = txtName.getText();
 			String tempIsbn = txtIsbn.getText();
 
@@ -512,7 +549,7 @@ public class UMain extends JFrame {
 		int i = 0;
 		boolean match = false;
 		if (txtListSearch.getText().equals("")) {
-			JOptionPane.showMessageDialog(null,"Bitte etwas in das Suchfeld eingeben.");
+			JOptionPane.showMessageDialog(null, "Bitte etwas in das Suchfeld eingeben.");
 			return;
 		}
 		for (TBook tempBook : Bookslist1) {
@@ -537,5 +574,6 @@ public class UMain extends JFrame {
 
 		}
 	}
+
 }
 // eoc

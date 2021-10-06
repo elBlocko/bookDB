@@ -1,6 +1,12 @@
 package database;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.sql.*;
+import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
 import logic.*;
 
 public class TDatabase {
@@ -70,6 +76,30 @@ public class TDatabase {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
+	}
+	
+	/*************************************************************************************
+	 * API*/
+	private String getApiKey() {
+		String key = "";
+		Scanner scan = null;
+		try {
+		    scan = new Scanner(new File(TConstants.CApiKeyPath));
+		} catch (FileNotFoundException e) {
+		    e.printStackTrace();
+		    JOptionPane.showMessageDialog(null, "Die Textdatei mit dem API Key konnte nicht gefunden werden.");
+		}
+		key = scan.nextLine();		
+		System.out.println(key);
+		scan.close();
+		return key;				
+	}
+	
+	public void getJson(String searchquery) {
+		String url = TConstants.CApiUrl + "?q=" + searchquery + "&key=" + getApiKey();
+		
+		
 		
 	}
 	
