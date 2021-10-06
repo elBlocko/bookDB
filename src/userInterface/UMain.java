@@ -56,6 +56,7 @@ public class UMain extends JFrame {
 	private JButton btnAdd;
 	private JButton btnDelete;
 	private JButton btnEdit;
+	private JButton btnSave;
 
 	public TAuthorList Authorlist1;
 	public TLocationList Locationlist1;
@@ -195,7 +196,7 @@ public class UMain extends JFrame {
 		btnEdit = new JButton("bearbeiten");
 		btnEdit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
+				editSelectedBook();
 			}
 		});
 		tbTools.add(btnEdit);
@@ -207,6 +208,15 @@ public class UMain extends JFrame {
 			}
 		});
 		tbTools.add(btnDelete);
+
+		btnSave = new JButton("speichern");
+		btnSave.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				updateChanges();
+			}
+		});
+		btnSave.setEnabled(false);
+		tbTools.add(btnSave);
 
 		/*
 		 * Toolbar Web Search
@@ -390,9 +400,7 @@ public class UMain extends JFrame {
 	}
 
 	void addNewBook() {
-
 		try {
-
 			if (txtLocation.getText().equals("") || txtAuthor.getText().equals("") || txtGenre.getText().equals("")
 					|| txtName.getText().equals("") || txtIsbn.getText().equals("")) {
 				JOptionPane.showMessageDialog(null, "Bitte alle Felder ausfüllen");
@@ -438,4 +446,63 @@ public class UMain extends JFrame {
 		txtLocation.setText("");
 	}
 
-} // eoc
+	void editSelectedBook() {
+		btnSave.setEnabled(true);
+		try {
+			txtName.setText(Bookslist1.get(rowIndexGrdMain).getName());
+			txtIsbn.setText(Bookslist1.get(rowIndexGrdMain).getIsbn());
+			txtGenre.setText(Bookslist1.get(rowIndexGrdMain).getGenre().getName());
+			txtAuthor.setText(Bookslist1.get(rowIndexGrdMain).getAuthor().getName());
+			txtYear.setText(String.valueOf(Bookslist1.get(rowIndexGrdMain).getYear()));
+			txtLocation.setText(Bookslist1.get(rowIndexGrdMain).getLocation().getName());
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null, "Fehler beim Übertragen des Buches in die Textfelder");
+		}
+
+	}
+
+	void updateChanges() {
+		int PKid = Bookslist1.get(rowIndexGrdMain).getID();
+		try {
+			if (txtLocation.getText().equals("") || txtAuthor.getText().equals("") || txtGenre.getText().equals("")
+					|| txtName.getText().equals("") || txtIsbn.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Bitte alle Felder ausfüllen");
+				return;
+			}
+
+			TLocation tempLocation = new TLocation(-1, txtLocation.getText());
+			int FKlocation = tempLocation.save(txtLocation.getText());
+			Locationlist1.add(tempLocation);
+
+			TAuthor tempAuthor = new TAuthor(-1, txtAuthor.getText());
+			int FKauthor = tempAuthor.save(txtAuthor.getText());
+			Authorlist1.add(tempAuthor);
+
+			TGenre tempGenre = new TGenre(-1, txtGenre.getText());
+			int FKgenre = tempGenre.save(txtGenre.getText());
+			Genrelist1.add(tempGenre);
+
+			String tempName = txtName.getText();
+			String tempIsbn = txtIsbn.getText();
+
+			int tempYear = Integer.parseInt(txtYear.getText());
+			TBook tempBook = new TBook(-1, tempName, tempAuthor, tempYear, tempIsbn, tempLocation, tempGenre);
+			tempBook.update(PKid,tempName, FKauthor, tempYear, tempIsbn, FKlocation, FKgenre);
+			Bookslist1.removeAll(Bookslist1);
+			Locationlist1.removeAll(Locationlist1);
+			Genrelist1.removeAll(Genrelist1);
+			Authorlist1.removeAll(Authorlist1);
+			setListContent();
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"Fehler beim erstellen eines Neuen Buches," + "die Jahreszahl darf nur 4 Ziffern haben");
+		}		
+		
+		setGridContent();
+		clearTextFields();
+		btnSave.setEnabled(false);
+		}
+}
+// eoc

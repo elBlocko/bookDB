@@ -98,17 +98,17 @@ public class TBook {
 	/***************************************************************
 	 * METHODEN
 	 */
-	public void delete(int ID) {
-		String sql = "DELETE FROM [tblBooks] WHERE PKid = " + ID + ";";
-		try {
-			Statement stmt = TDatabase.connection.createStatement();
-			// execute the delete statement
-			stmt.executeUpdate(sql);
-			stmt.close();
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Fehler beim löschen der Daten in der Bücher Tabelle");
-		}
-	}
+//	public void delete(int ID) {
+//		String sql = "DELETE FROM [tblBooks] WHERE PKid = " + ID + ";";
+//		try {
+//			Statement stmt = TDatabase.connection.createStatement();
+//			// execute the delete statement
+//			stmt.executeUpdate(sql);
+//			stmt.close();
+//		} catch (SQLException e) {
+//			JOptionPane.showMessageDialog(null, "Fehler beim löschen der Daten in der Bücher Tabelle");
+//		}
+//	}
 
 	public int save(String Name, int FKauthor, int Year, String Isbn, int FKlocation, int FKgenre) {
 		String sql = "insert into tblBooks (txtName,FKauthor,numYear,txtIsbn,FKlocation,FKgenre)" + "values ('" + Name
@@ -126,4 +126,17 @@ public class TBook {
 		return PKid;
 	}
 
+	public void update(int ID, String Name, int FKauthor, int Year, String Isbn, int FKlocation, int FKgenre) {
+		String sql = "update tblBooks set txtName = '" + Name + "', FKauthor = " + FKauthor + ", numYear = " + Year
+				+ " , txtIsbn = '" + Isbn + "', FKlocation = " + FKlocation + ", FKgenre =" + FKgenre + " where PKid = "
+				+ ID + ";";		
+		try {
+			Statement stmt = TDatabase.connection.createStatement();
+			// execute the insert statement
+			stmt.executeUpdate(sql);
+			stmt.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Fehler beim speichern der Daten in der Bücher Tabelle");
+		}
+	}
 }
