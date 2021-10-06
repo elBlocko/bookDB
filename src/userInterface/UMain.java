@@ -173,6 +173,7 @@ public class UMain extends JFrame {
 		JButton btnListSearch = new JButton("suchen");
 		btnListSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				searchGrdMain();
 			}
 		});
 		tbSearchBarList.add(btnListSearch);
@@ -407,6 +408,7 @@ public class UMain extends JFrame {
 				return;
 			}
 
+			// TODO : doppelte Einträge in der Datenbank verhindern
 			TLocation tempLocation = new TLocation(-1, txtLocation.getText());
 			int FKlocation = tempLocation.save(txtLocation.getText());
 			Locationlist1.add(tempLocation);
@@ -487,8 +489,9 @@ public class UMain extends JFrame {
 			String tempIsbn = txtIsbn.getText();
 
 			int tempYear = Integer.parseInt(txtYear.getText());
+
 			TBook tempBook = new TBook(-1, tempName, tempAuthor, tempYear, tempIsbn, tempLocation, tempGenre);
-			tempBook.update(PKid,tempName, FKauthor, tempYear, tempIsbn, FKlocation, FKgenre);
+			tempBook.update(PKid, tempName, FKauthor, tempYear, tempIsbn, FKlocation, FKgenre);
 			Bookslist1.removeAll(Bookslist1);
 			Locationlist1.removeAll(Locationlist1);
 			Genrelist1.removeAll(Genrelist1);
@@ -498,11 +501,41 @@ public class UMain extends JFrame {
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(null,
 					"Fehler beim erstellen eines Neuen Buches," + "die Jahreszahl darf nur 4 Ziffern haben");
-		}		
-		
+		}
+
 		setGridContent();
 		clearTextFields();
 		btnSave.setEnabled(false);
+	}
+
+	void searchGrdMain() {
+		int i = 0;
+		boolean match = false;
+		if (txtListSearch.getText().equals("")) {
+			JOptionPane.showMessageDialog(null,"Bitte etwas in das Suchfeld eingeben.");
+			return;
 		}
+		for (TBook tempBook : Bookslist1) {
+			if (txtListSearch.getText().equals(tempBook.getIsbn())) {
+				modelList.setRowCount(0);
+				rowList[0] = Bookslist1.get(i).getID();
+				rowList[1] = Bookslist1.get(i).getName();
+				rowList[2] = Bookslist1.get(i).getAuthor().getName();
+				rowList[3] = Bookslist1.get(i).getGenre().getName();
+				rowList[4] = Bookslist1.get(i).getYear();
+				rowList[5] = Bookslist1.get(i).getIsbn();
+				rowList[6] = Bookslist1.get(i).getLocation().getName();
+
+				modelList.addRow(rowList);
+				match = true;
+			}
+			i++;
+		}
+		if (match == false) {
+			JOptionPane.showMessageDialog(null,
+					"Keine Einträge gefunden.\nHinweis: Es kann nur nach ISBN-Nummer gesucht werden!");
+
+		}
+	}
 }
 // eoc
