@@ -2,6 +2,7 @@ package userInterface;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Point;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -64,7 +65,7 @@ public class UMain extends JFrame {
 	private int rowIndexGrdMain;
 
 	// INIT GRID HEADERS
-	Object[] columns = { "ID","Buchtitel", "Autor", "Genre", "Erscheinungsjahr", "Isbn", "Regalplatz" };
+	Object[] columns = { "ID", "Buchtitel", "Autor", "Genre", "Erscheinungsjahr", "Isbn", "Regalplatz" };
 	DefaultTableModel modelList = new DefaultTableModel();
 	DefaultTableModel modelWeb = new DefaultTableModel();
 
@@ -134,7 +135,7 @@ public class UMain extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				rowIndexGrdMain = grdMain.getSelectedRow();
-				//JOptionPane.showMessageDialog(null, rowIndexGrdMain);
+				// JOptionPane.showMessageDialog(null, rowIndexGrdMain);
 			}
 		});
 		grdMain.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -333,18 +334,6 @@ public class UMain extends JFrame {
 
 	}
 
-	void addNewBook() {
-		rowList[0] = txtName.getText();
-		rowList[1] = txtAuthor.getText();
-		rowList[2] = txtGenre.getText();
-		rowList[3] = txtYear.getText();
-		rowList[4] = txtIsbn.getText();
-		rowList[5] = txtLocation.getText();
-
-		modelList.addRow(rowList);
-
-	}
-
 	void connectDatabase() {
 		// establish connection to database
 		TDatabase database1 = TDatabase.getInstance();
@@ -383,21 +372,70 @@ public class UMain extends JFrame {
 	}
 
 	void setColumnIdInvisible() {
-		grdMain.getColumn( "ID" ).setMinWidth( 0 );
-		grdMain.getColumn( "ID" ).setMaxWidth( 0 );		
-	}	
+		grdMain.getColumn("ID").setMinWidth(0);
+		grdMain.getColumn("ID").setMaxWidth(0);
+	}
 
 	void deleteSelectedBook() {
-		
+
 		int PKid = Bookslist1.get(rowIndexGrdMain).getID();
-		Bookslist1.delete(PKid);		
-		for (TBook Book: Bookslist1) {
+		Bookslist1.delete(PKid);
+		for (TBook Book : Bookslist1) {
 			if (Book.getID() == PKid) {
 				Bookslist1.remove(Book);
 				break;
 			}
-		}		
+		}
 		setGridContent();
 	}
-	
+
+	void addNewBook() {
+
+		try {
+
+			if (txtLocation.getText().equals("") || txtAuthor.getText().equals("") || txtGenre.getText().equals("")
+					|| txtName.getText().equals("") || txtIsbn.getText().equals("")) {
+				JOptionPane.showMessageDialog(null, "Bitte alle Felder ausfüllen");
+				return;
+			}
+
+			TLocation tempLocation = new TLocation(-1, txtLocation.getText());
+			int FKlocation = tempLocation.save(txtLocation.getText());
+			Locationlist1.add(tempLocation);
+
+			TAuthor tempAuthor = new TAuthor(-1, txtAuthor.getText());
+			int FKauthor = tempAuthor.save(txtAuthor.getText());
+			Authorlist1.add(tempAuthor);
+
+			TGenre tempGenre = new TGenre(-1, txtGenre.getText());
+			int FKgenre = tempGenre.save(txtGenre.getText());
+			Genrelist1.add(tempGenre);
+
+			String tempName = txtName.getText();
+			String tempIsbn = txtIsbn.getText();
+
+			int tempYear = Integer.parseInt(txtYear.getText());
+			TBook tempBook = new TBook(-1, tempName, tempAuthor, tempYear, tempIsbn, tempLocation, tempGenre);
+			tempBook.save(tempName, FKauthor, tempYear, tempIsbn, FKlocation, FKgenre);
+			Bookslist1.add(tempBook);
+
+		} catch (Exception e) {
+			JOptionPane.showMessageDialog(null,
+					"Fehler beim erstellen eines Neuen Buches," + "die Jahreszahl darf nur 4 Ziffern haben");
+		}
+
+		setGridContent();
+		clearTextFields();
+	}
+
+	void clearTextFields() {
+
+		txtName.setText("");
+		txtIsbn.setText("");
+		txtGenre.setText("");
+		txtAuthor.setText("");
+		txtYear.setText("");
+		txtLocation.setText("");
+	}
+
 } // eoc

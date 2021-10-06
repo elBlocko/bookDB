@@ -40,17 +40,4 @@ public class TAuthorList extends ArrayList<TAuthor> {
 
 	}
 
-	public void delete(int ID) {
-		String sql = "DELETE FROM [tblAuthor] WHERE PKid = " + ID + ";";
-		try {
-			Statement stmt = TDatabase.connection.createStatement();
-			// execute the delete statement
-			stmt.executeUpdate(sql);
-			stmt.close();
-		} catch (SQLException e) {
-			JOptionPane.showMessageDialog(null, "Fehler beim löschen der Daten in der Autor Liste");
-		}
-
-	}
-
 }

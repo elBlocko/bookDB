@@ -1,5 +1,12 @@
 package logic;
 
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import javax.swing.JOptionPane;
+
+import database.TDatabase;
+
 public class TBook {
 	// interface
 	// PROPERTIES
@@ -86,6 +93,37 @@ public class TBook {
 
 	public void setAuthor(TGenre Genre) {
 		this.FGenre = Genre;
+	}
+
+	/***************************************************************
+	 * METHODEN
+	 */
+	public void delete(int ID) {
+		String sql = "DELETE FROM [tblBooks] WHERE PKid = " + ID + ";";
+		try {
+			Statement stmt = TDatabase.connection.createStatement();
+			// execute the delete statement
+			stmt.executeUpdate(sql);
+			stmt.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Fehler beim löschen der Daten in der Bücher Tabelle");
+		}
+	}
+
+	public int save(String Name, int FKauthor, int Year, String Isbn, int FKlocation, int FKgenre) {
+		String sql = "insert into tblBooks (txtName,FKauthor,numYear,txtIsbn,FKlocation,FKgenre)" + "values ('" + Name
+				+ "'," + FKauthor + "," + Year + ",'" + Isbn + "'," + FKlocation + "," + FKgenre + ");";
+		int PKid = -1;
+		try {
+			Statement stmt = TDatabase.connection.createStatement();
+			// execute the insert statement
+			stmt.executeUpdate(sql);
+			PKid = stmt.getGeneratedKeys().getInt(1);
+			stmt.close();
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(null, "Fehler beim speichern der Daten in der Bücher Tabelle");
+		}
+		return PKid;
 	}
 
 }
