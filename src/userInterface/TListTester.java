@@ -63,30 +63,30 @@ public class TListTester {
 		// System.out.println(LocationList1.get(0).getName()); // output
 		// ListObject[0].Name
 
-		String data = database1.getJson("3499235390");
-		System.out.println(data);
-		JSONObject jObjectMain = new JSONObject(data);
-		// JSONArray jsonArray = (JSONArray) jObject.get("items");
-		JSONArray jsonArrayItems = jObjectMain.getJSONArray("items");
-		for (int i = 0; i < jsonArrayItems.length(); i++) {
-			// String tempId = jsonArrayItems.getJSONObject(i).getString("id");
-
-			String tempName = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("title");
-
-			String tempYear = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("publishedDate");
-			String tempGenre = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("subtitle");
-			String tempAuthor = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getJSONArray("authors")
-					.getString(0);
-			String tempIdentifier = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo")
-					.getJSONArray("industryIdentifiers").get(0).toString();			
-			String tempIsbn = tempIdentifier.split("\"")[3];			
-			System.out.println(tempName);
-			System.out.println(tempYear);
-			System.out.println(tempGenre);
-			System.out.println(tempAuthor);
-			System.out.println(tempIdentifier);					
-			System.out.println(tempIsbn);
-		}
+//		String data = database1.getJson("3499235390");
+//		System.out.println(data);
+//		JSONObject jObjectMain = new JSONObject(data);
+//		// JSONArray jsonArray = (JSONArray) jObject.get("items");
+//		JSONArray jsonArrayItems = jObjectMain.getJSONArray("items");
+//		for (int i = 0; i < jsonArrayItems.length(); i++) {
+//			// String tempId = jsonArrayItems.getJSONObject(i).getString("id");
+//
+//			String tempName = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("title");
+//
+//			String tempYear = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("publishedDate");
+//			String tempGenre = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("subtitle");
+//			String tempAuthor = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getJSONArray("authors")
+//					.getString(0);
+//			String tempIdentifier = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo")
+//					.getJSONArray("industryIdentifiers").get(0).toString();			
+//			String tempIsbn = tempIdentifier.split("\"")[3];			
+//			System.out.println(tempName);
+//			System.out.println(tempYear);
+//			System.out.println(tempGenre);
+//			System.out.println(tempAuthor);
+//			System.out.println(tempIdentifier);					
+//			System.out.println(tempIsbn);
+//		}
 
 		// close connection to database
 		database1.disconnect();

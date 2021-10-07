@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+import org.json.JSONException;
+
 import logic.*; // importiert alle Klassen aus dem Package
 import database.*;
 import javax.swing.JTable;
@@ -67,7 +69,9 @@ public class UMain extends JFrame {
 	public TLocationList Locationlist1;
 	public TGenreList Genrelist1;
 	public TBooksList Bookslist1;
-
+	public TJsonList JsonList1;
+	
+	
 	private int rowIndexGrdMain;
 
 	// INIT GRID HEADERS
@@ -256,6 +260,12 @@ public class UMain extends JFrame {
 		JButton btnWebSearch = new JButton("suchen");
 		btnWebSearch.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				try {
+					getWebResult();
+				} catch (JSONException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		tbSearchBarWeb.add(btnWebSearch);
@@ -377,6 +387,7 @@ public class UMain extends JFrame {
 		Locationlist1 = new TLocationList(new ArrayList<TLocation>()); // init
 		Genrelist1 = new TGenreList(new ArrayList<TGenre>()); // init
 		Bookslist1 = new TBooksList(new ArrayList<TBook>()); // init
+		JsonList1 = new TJsonList(new ArrayList<TJson>()); // init
 
 	}
 
@@ -574,5 +585,28 @@ public class UMain extends JFrame {
 
 		}
 	}
+	
+	private void getWebResult() throws JSONException {
+		if (txtWebSearch.getText().equals("")) {
+			JOptionPane.showMessageDialog(null, "Bitte etwas in das Suchfeld eingeben.");
+			return;
+		}
+		
+		JsonList1.parseJson(txtWebSearch.getText());
+		modelWeb.setRowCount(0);
+		for (int i = 0; i < Bookslist1.size(); i++) {
+
+			rowWeb[0] = JsonList1.get(i).getID();
+			rowWeb[1] = JsonList1.get(i).getName();
+			rowWeb[2] = JsonList1.get(i).getAuthor();
+			rowWeb[3] = JsonList1.get(i).getGenre();
+			rowWeb[4] = JsonList1.get(i).getYear();
+			rowWeb[5] = JsonList1.get(i).getIsbn();
+			rowWeb[6] = "noch kein Platz zugeordnet";
+
+			modelWeb.addRow(rowWeb);
+		}
+	}
+	
 }
 // eoc
