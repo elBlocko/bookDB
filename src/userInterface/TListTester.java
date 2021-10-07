@@ -56,6 +56,9 @@ public class TListTester {
 //		scan.close();
 		// System.out.println(LocationList1.get(0).getName()); // output
 		// ListObject[0].Name
+		
+	
+		System.out.println(database1.getJson("flower"));
 
 		// close connection to database
 		database1.disconnect();
