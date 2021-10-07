@@ -20,9 +20,10 @@ public class TJsonList extends ArrayList<TJson> {
 
 	// METHODEN
 	public void parseJson(String searchquery) throws JSONException {
+	
 		TDatabase database1 = TDatabase.getInstance();
 		String data = database1.getJson(searchquery);
-		//System.out.println(data);
+		System.out.println(data);
 		JSONObject jObjectMain = new JSONObject(data);
 		// JSONArray jsonArray = (JSONArray) jObject.get("items");
 		JSONArray jsonArrayItems = jObjectMain.getJSONArray("items");
@@ -30,7 +31,7 @@ public class TJsonList extends ArrayList<TJson> {
 			// String tempId = jsonArrayItems.getJSONObject(i).getString("id");
 
 			String tempName = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("title");
-			//int tempId = Integer.parseInt(jsonArrayItems.getJSONObject(i).getString("id"));
+			//String tempId = jsonArrayItems.getJSONObject(i).getString("id");
 			String tempYear = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("publishedDate");
 			String tempGenre = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("subtitle");
 			String tempAuthor = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getJSONArray("authors")

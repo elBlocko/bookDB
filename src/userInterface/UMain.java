@@ -36,6 +36,8 @@ import javax.swing.ListSelectionModel;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.VetoableChangeListener;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.awt.event.InputMethodListener;
 import java.awt.event.InputMethodEvent;
 import java.awt.event.MouseAdapter;
@@ -73,6 +75,7 @@ public class UMain extends JFrame {
 	
 	
 	private int rowIndexGrdMain;
+	private int rowIndexGrdWeb;
 
 	// INIT GRID HEADERS
 	Object[] columns = { "ID", "Buchtitel", "Autor", "Genre", "Erscheinungsjahr", "Isbn", "Regalplatz" };
@@ -162,6 +165,12 @@ public class UMain extends JFrame {
 		scrollPane_1.setBounds(10, 312, 774, 90);
 		contentPane.add(scrollPane_1);
 		grdWeb = new JTable();
+		grdWeb.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				rowIndexGrdWeb = grdWeb.getSelectedRow();
+			}
+		});
 		grdWeb.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		setGrdWebHeader();
 		scrollPane_1.setViewportView(grdWeb);
@@ -262,13 +271,21 @@ public class UMain extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 					getWebResult();
-				} catch (JSONException e1) {
+				} catch (JSONException | UnsupportedEncodingException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
 			}
 		});
 		tbSearchBarWeb.add(btnWebSearch);
+		
+		JButton btnAdd_1 = new JButton("hinzuf\u00FCgen");
+		btnAdd_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				addWebBook();
+			}
+		});
+		tbSearchBarWeb.add(btnAdd_1);
 
 		/*
 		 * Panel New Book
@@ -586,15 +603,21 @@ public class UMain extends JFrame {
 		}
 	}
 	
-	private void getWebResult() throws JSONException {
+	private void getWebResult() throws JSONException, UnsupportedEncodingException {
+		JsonList1.removeAll(JsonList1);
 		if (txtWebSearch.getText().equals("")) {
 			JOptionPane.showMessageDialog(null, "Bitte etwas in das Suchfeld eingeben.");
 			return;
 		}
+//		String searchquery = URLEncoder.encode(
+//				txtWebSearch.getText(),
+//			    java.nio.charset.StandardCharsets.UTF_8.toString()
+//			  );
+//		
 		
 		JsonList1.parseJson(txtWebSearch.getText());
 		modelWeb.setRowCount(0);
-		for (int i = 0; i < Bookslist1.size(); i++) {
+		for (int i = 0; i < JsonList1.size(); i++) {
 
 			rowWeb[0] = JsonList1.get(i).getID();
 			rowWeb[1] = JsonList1.get(i).getName();
@@ -606,7 +629,31 @@ public class UMain extends JFrame {
 
 			modelWeb.addRow(rowWeb);
 		}
+	}	
+	private void addWebBook() {
+		String tempName = JsonList1.get(rowIndexGrdWeb).getName();
+		String Year = JsonList1.get(rowIndexGrdWeb).getYear();
+		if (Year.length() > 4) {
+		Year = Year.split("-")[1]; }
+		int tempYear = Integer.parseInt(Year);
+		String tempIsbn = JsonList1.get(rowIndexGrdWeb).getIsbn();
+		
+		TLocation tempLocation = new TLocation(-1, "noch kein Platz zugeordnet");
+		int FKlocation = tempLocation.save("noch kein Platz zugeordnet");
+		Locationlist1.add(tempLocation);
+
+		TAuthor tempAuthor = new TAuthor(-1, JsonList1.get(rowIndexGrdWeb).getAuthor());
+		int FKauthor = tempAuthor.save(JsonList1.get(rowIndexGrdWeb).getAuthor());
+		Authorlist1.add(tempAuthor);
+
+		TGenre tempGenre = new TGenre(-1, JsonList1.get(rowIndexGrdWeb).getGenre());
+		int FKgenre = tempGenre.save(JsonList1.get(rowIndexGrdWeb).getGenre());
+		Genrelist1.add(tempGenre);
+		
+		TBook tempBook = new TBook(-1, tempName, tempAuthor, tempYear, tempIsbn, tempLocation, tempGenre);
+		tempBook.save(tempName, FKauthor, tempYear, tempIsbn, FKlocation, FKgenre);
+		Bookslist1.add(tempBook);
+		setGridContent();
 	}
-	
 }
 // eoc
