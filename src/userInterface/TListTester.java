@@ -3,16 +3,22 @@ package userInterface;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Scanner;
 
 import javax.swing.JOptionPane;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import database.TDatabase;
 import logic.*;
 
 public class TListTester {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws JSONException {
 		// establish connection to database
 		TDatabase database1 = TDatabase.getInstance();
 		database1.connect();
@@ -43,7 +49,7 @@ public class TListTester {
 //		int PKid = tempAuthor.save("Roman");
 //		AuthorList1.add(tempAuthor);
 //		System.out.println(PKid);
-		
+
 //		Scanner scan = null;
 //		try {
 //		    scan = new Scanner(new File(TConstants.CApiKeyPath));
@@ -56,9 +62,24 @@ public class TListTester {
 //		scan.close();
 		// System.out.println(LocationList1.get(0).getName()); // output
 		// ListObject[0].Name
-		
-	
-		System.out.println(database1.getJson("flower"));
+
+		String data = database1.getJson("3499235390");
+		System.out.println(data);
+		JSONObject jObjectMain = new JSONObject(data);
+		// JSONArray jsonArray = (JSONArray) jObject.get("items");
+		JSONArray jsonArrayItems = jObjectMain.getJSONArray("items");
+		for (int i = 0; i < jsonArrayItems.length(); i++) {
+			String tempId = jsonArrayItems.getJSONObject(i).getString("id");
+			System.out.println(jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").get("title"));
+			System.out.println(jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").get("publishedDate"));
+			System.out.println(jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").get("subtitle"));	
+			System.out.println(
+					jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getJSONArray("authors").get(0));
+			System.out.println(jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo")
+					.getJSONArray("industryIdentifiers").get(0));					
+			System.out.println(tempId);
+
+		}
 
 		// close connection to database
 		database1.disconnect();

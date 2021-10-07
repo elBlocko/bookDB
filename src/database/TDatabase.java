@@ -106,7 +106,7 @@ public class TDatabase {
 	}
 
 	public String getJson(String searchquery) {
-		String url = TConstants.CApiUrl + "?q=" + searchquery + "&key=" + getApiKey();
+		String url = TConstants.CApiUrl + "?q=" + searchquery + "&maxResults=2&key=" + getApiKey();
 		String JsonString = "";
 		try {
 			URL obj = new URL(url);

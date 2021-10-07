@@ -30,8 +30,8 @@ public class TBook {
 		this.FLocation = ALocation;
 		this.FGenre = AGenre;
 	}
-
 	// ***********************************************************
+	
 	// PROPERTY READ id WRITE id
 	public int getID() {
 		return FID;
