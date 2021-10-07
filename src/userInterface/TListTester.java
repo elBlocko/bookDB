@@ -69,16 +69,23 @@ public class TListTester {
 		// JSONArray jsonArray = (JSONArray) jObject.get("items");
 		JSONArray jsonArrayItems = jObjectMain.getJSONArray("items");
 		for (int i = 0; i < jsonArrayItems.length(); i++) {
-			String tempId = jsonArrayItems.getJSONObject(i).getString("id");
-			System.out.println(jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").get("title"));
-			System.out.println(jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").get("publishedDate"));
-			System.out.println(jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").get("subtitle"));	
-			System.out.println(
-					jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getJSONArray("authors").get(0));
-			System.out.println(jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo")
-					.getJSONArray("industryIdentifiers").get(0));					
-			System.out.println(tempId);
+			// String tempId = jsonArrayItems.getJSONObject(i).getString("id");
 
+			String tempName = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("title");
+
+			String tempYear = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("publishedDate");
+			String tempGenre = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getString("subtitle");
+			String tempAuthor = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo").getJSONArray("authors")
+					.getString(0);
+			String tempIdentifier = jsonArrayItems.getJSONObject(i).getJSONObject("volumeInfo")
+					.getJSONArray("industryIdentifiers").get(0).toString();			
+			String tempIsbn = tempIdentifier.split("\"")[3];			
+			System.out.println(tempName);
+			System.out.println(tempYear);
+			System.out.println(tempGenre);
+			System.out.println(tempAuthor);
+			System.out.println(tempIdentifier);					
+			System.out.println(tempIsbn);
 		}
 
 		// close connection to database
