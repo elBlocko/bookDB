@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.10.4)  8 OCT 2021 10:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.10.4)  8 OCT 2021 13:30
 entering extended mode
 **./Main.tex
 (Main.tex
@@ -425,8 +425,15 @@ File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count282
 \l__pdf_internal_box=\box56
 ) (Main.aux (content/001_Analyse.aux) (content/002_Entwurf.aux)
-(content/003_Implementierung.aux) (content/004_Dokumentation.aux)
-(content/005_Fazit.aux))
+(content/003_Implementierung.aux
+
+LaTeX Warning: Label `listklasse' multiply defined.
+
+) (content/004_Dokumentation.aux) (content/005_Fazit.aux
+
+LaTeX Warning: Label `tab:Projektphasen' multiply defined.
+
+))
 \openout1 = `Main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 4.
@@ -551,7 +558,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--20
 
  []
 
-<img/entwurf.png, id=99, 520.94624pt x 243.15843pt>
+<img/entwurf.png, id=101, 520.94624pt x 243.15843pt>
 File: img/entwurf.png Graphic file (type png)
 <use img/entwurf.png>
 Package pdftex.def Info: img/entwurf.png  used on input line 29.
@@ -570,7 +577,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--43
 
  []
 
-<img/mainpap.png, id=104, 493.845pt x 541.27219pt>
+<img/mainpap.png, id=106, 493.845pt x 541.27219pt>
 File: img/mainpap.png Graphic file (type png)
 <use img/mainpap.png>
 Package pdftex.def Info: img/mainpap.png  used on input line 46.
@@ -597,7 +604,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 17--20
 
 
 ]
-<img/datenbank.png, id=123, 764.10469pt x 244.66406pt>
+<img/datenbank.png, id=125, 764.10469pt x 244.66406pt>
 File: img/datenbank.png Graphic file (type png)
 <use img/datenbank.png>
 Package pdftex.def Info: img/datenbank.png  used on input line 70.
@@ -612,7 +619,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 76--80
 
  []
 
-<img/connect.png, id=129, 762.59906pt x 445.665pt>
+<img/connect.png, id=131, 762.59906pt x 445.665pt>
 File: img/connect.png Graphic file (type png)
 <use img/connect.png>
 Package pdftex.def Info: img/connect.png  used on input line 90.
@@ -628,7 +635,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 96--104
  []
 
 [11 <./img/connect.png>]
-<img/getjson.png, id=142, 792.71156pt x 563.85657pt>
+<img/getjson.png, id=144, 792.71156pt x 563.85657pt>
 File: img/getjson.png Graphic file (type png)
 <use img/getjson.png>
 Package pdftex.def Info: img/getjson.png  used on input line 109.
@@ -638,32 +645,208 @@ Overfull \hbox (8.53578pt too wide) in paragraph at lines 109--110
  [] 
  []
 
-[12 <./img/getjson.png>]) [13]
+
+Underfull \hbox (badness 10000) in paragraph at lines 117--120
+
+ []
+
+<img/objekt.png, id=145, 635.37375pt x 549.55313pt>
+File: img/objekt.png Graphic file (type png)
+<use img/objekt.png>
+Package pdftex.def Info: img/objekt.png  used on input line 125.
+(pdftex.def)             Requested size: 426.79134pt x 369.15463pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 125--126
+ [] 
+ []
+
+[12 <./img/getjson.png>]
+<img/listklasse.png, id=152, 551.05875pt x 127.97812pt>
+File: img/listklasse.png Graphic file (type png)
+<use img/listklasse.png>
+Package pdftex.def Info: img/listklasse.png  used on input line 134.
+(pdftex.def)             Requested size: 426.79134pt x 99.12148pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 134--135
+ [] 
+ []
+
+<img/setcontent.png, id=153, 757.32938pt x 404.26031pt>
+File: img/setcontent.png Graphic file (type png)
+<use img/setcontent.png>
+Package pdftex.def Info: img/setcontent.png  used on input line 142.
+(pdftex.def)             Requested size: 426.79134pt x 227.82149pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 142--143
+ [] 
+ []
+
+[13 <./img/objekt.png>] [14 <./img/listklasse.png> <./img/setcontent.png>]
+<img/parseJson.png, id=169, 862.72313pt x 470.50781pt>
+File: img/parseJson.png Graphic file (type png)
+<use img/parseJson.png>
+Package pdftex.def Info: img/parseJson.png  used on input line 152.
+(pdftex.def)             Requested size: 426.79134pt x 232.7549pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 152--153
+ [] 
+ []
+
+[15 <./img/parseJson.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 161--165
+
+ []
+
+<img/alpha.png, id=176, 605.26125pt x 435.12563pt>
+File: img/alpha.png Graphic file (type png)
+<use img/alpha.png>
+Package pdftex.def Info: img/alpha.png  used on input line 169.
+(pdftex.def)             Requested size: 426.79134pt x 306.82336pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 169--170
+ [] 
+ []
+
+<img/beta.png, id=177, 709.14937pt x 463.7325pt>
+File: img/beta.png Graphic file (type png)
+<use img/beta.png>
+Package pdftex.def Info: img/beta.png  used on input line 179.
+(pdftex.def)             Requested size: 426.79134pt x 279.09782pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 179--180
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[16 <./img/alpha.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 187--191
+
+ []
+
+<img/model.png, id=184, 788.9475pt x 107.65219pt>
+File: img/model.png Graphic file (type png)
+<use img/model.png>
+Package pdftex.def Info: img/model.png  used on input line 194.
+(pdftex.def)             Requested size: 426.79134pt x 58.23479pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 194--195
+ [] 
+ []
+
+<img/setheader.png, id=185, 648.92438pt x 116.68594pt>
+File: img/setheader.png Graphic file (type png)
+<use img/setheader.png>
+Package pdftex.def Info: img/setheader.png  used on input line 202.
+(pdftex.def)             Requested size: 426.79134pt x 76.7441pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 202--203
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[17 <./img/beta.png> <./img/model.png>]
+<img/listcreate.png, id=194, 618.81187pt x 150.5625pt>
+File: img/listcreate.png Graphic file (type png)
+<use img/listcreate.png>
+Package pdftex.def Info: img/listcreate.png  used on input line 214.
+(pdftex.def)             Requested size: 426.79134pt x 103.84686pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 214--215
+ [] 
+ []
+
+<img/setlistcontent.png, id=195, 693.34032pt x 115.18031pt>
+File: img/setlistcontent.png Graphic file (type png)
+<use img/setlistcontent.png>
+Package pdftex.def Info: img/setlistcontent.png  used on input line 222.
+(pdftex.def)             Requested size: 426.79134pt x 70.90135pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 222--223
+ [] 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 232--235
+
+ []
+
+[18 <./img/setheader.png> <./img/listcreate.png> <./img/setlistcontent.png>]
+<img/setgridcontent.png, id=206, 681.29532pt x 266.49562pt>
+File: img/setgridcontent.png Graphic file (type png)
+<use img/setgridcontent.png>
+Package pdftex.def Info: img/setgridcontent.png  used on input line 238.
+(pdftex.def)             Requested size: 426.79134pt x 166.94565pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 238--239
+ [] 
+ []
+
+<img/webgrid.png, id=207, 773.13844pt x 372.64218pt>
+File: img/webgrid.png Graphic file (type png)
+<use img/webgrid.png>
+Package pdftex.def Info: img/webgrid.png  used on input line 246.
+(pdftex.def)             Requested size: 426.79134pt x 205.71007pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 246--247
+ [] 
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[19 <./img/setgridcontent.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 257--259
+
+ []
+
+<img/test.png, id=215, 655.69969pt x 124.21407pt>
+File: img/test.png Graphic file (type png)
+<use img/test.png>
+Package pdftex.def Info: img/test.png  used on input line 262.
+(pdftex.def)             Requested size: 426.79134pt x 80.84999pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 262--263
+ [] 
+ []
+
+) [20 <./img/webgrid.png> <./img/test.png>]
 \openout2 = `content/004_Dokumentation.aux'.
 
- (content/004_Dokumentation.tex) [14
+ (content/004_Dokumentation.tex)
+[21
 
 
 
 ]
 \openout2 = `content/005_Fazit.aux'.
 
+ (content/005_Fazit.tex
+Underfull \hbox (badness 10000) in paragraph at lines 3--5
 
-(content/005_Fazit.tex) [15
+ []
+
+) [22
 
 
 
-] (Main.aux (content/001_Analyse.aux)
-(content/002_Entwurf.aux) (content/003_Implementierung.aux)
-(content/004_Dokumentation.aux) (content/005_Fazit.aux))
+] (Main.aux (content/001_Analyse.aux) (content/002_Entwurf.aux)
+(content/003_Implementierung.aux) (content/004_Dokumentation.aux)
+(content/005_Fazit.aux))
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13131 strings out of 478864
- 222483 string characters out of 2848660
- 693888 words of memory out of 3000000
- 30782 multiletter control sequences out of 15000+600000
+ 13253 strings out of 478864
+ 224592 string characters out of 2848660
+ 694888 words of memory out of 3000000
+ 30872 multiletter control sequences out of 15000+600000
  410683 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,9n,108p,10619b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -674,9 +857,9 @@ ic/amsfonts/cm/cmr10.pfb><C:/Users/PC502/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/public/amsfonts/cm/cmr12.pfb><C:/Users/PC502/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/PC502/AppData/Local/Progr
 ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on Main.pdf (15 pages, 4368040 bytes).
+Output written on Main.pdf (22 pages, 4627988 bytes).
 PDF statistics:
- 309 PDF objects out of 1000 (max. 8388607)
- 60 named destinations out of 1000 (max. 500000)
- 311 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 384 PDF objects out of 1000 (max. 8388607)
+ 81 named destinations out of 1000 (max. 500000)
+ 376 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -106,6 +106,7 @@ public class UMain extends JFrame {
 	 * Create the frame.
 	 */
 	public UMain() {
+		setTitle("B\u00FCcherverwaltung v 1.0");
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowOpened(WindowEvent e) {
@@ -609,11 +610,6 @@ public class UMain extends JFrame {
 			JOptionPane.showMessageDialog(null, "Bitte etwas in das Suchfeld eingeben.");
 			return;
 		}
-//		String searchquery = URLEncoder.encode(
-//				txtWebSearch.getText(),
-//			    java.nio.charset.StandardCharsets.UTF_8.toString()
-//			  );
-//		
 		
 		JsonList1.parseJson(txtWebSearch.getText());
 		modelWeb.setRowCount(0);
@@ -630,6 +626,7 @@ public class UMain extends JFrame {
 			modelWeb.addRow(rowWeb);
 		}
 	}	
+	
 	private void addWebBook() {
 		String tempName = JsonList1.get(rowIndexGrdWeb).getName();
 		String Year = JsonList1.get(rowIndexGrdWeb).getYear();

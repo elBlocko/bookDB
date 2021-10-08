@@ -116,10 +116,151 @@ Alle benötigten Klassen und zugehörige Methoden, wie z.B. die HTTP Verbindung 
 \subsubsection{Konzept}
 Zur Umsetzung der Aufgabenstellung im Quellcode benutze ich Objektlisten von Objekten.
 Diese Listen werden zu Programmstart in der \textbf{UMain} erstellt und mit den Methoden aus der Logik, die auf die Datenbank zugreifen, gefüllt.\\
-Damit setze ich die Darstellung und Bearbeitung der Daten um. Jede Klasse eines Objekts besteht aus Eigenschaften, die Privat deklariert werden. Diese Klassen verfügen über einen Konstruktor in dem die Parameter in dessen Eigenschaften übergeben werden. Mit öffentlichen \textit{getter} und \textit{setter} Methoden kann auf die Eigenschaften zugegriffen werden.\\
+Damit setze ich die Darstellung und Bearbeitung der Daten um.\\
+\subsubsection{Objektklassen}
+Jede Klasse eines Objekts besteht aus Eigenschaften, die Privat deklariert werden. Diese Klassen verfügen über einen Konstruktor in dem die Parameter in dessen Eigenschaften übergeben werden. Mit öffentlichen \textit{getter} und \textit{setter} Methoden kann auf die Eigenschaften zugegriffen werden.\\
 Die Objektklassen bekommen jeweils eine \textit{save} und eine \textit{delete} Methode, zum speichern, bzw. löschen der Objekte in der Datenbank.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/objekt.png}
+\caption{Aufbau einer Objektklasse}
+\label{objekt}
+\end{center}
+\end{figure}
+\subsubsection{Listenklassen}
+Die Listen sind Objektlisten, die mit den Daten der Datenbank nach Vorlage des zugehörigen Objektes gefüllt werden.\\
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/listklasse.png}
+\caption{Erzeugen einer Objektliste in Java}
+\label{listklasse}
+\end{center}
+\end{figure}
+Jede Listenklasse besitzt eine Methode \textit{public void setContent() {}} die ein select * statement ausführt und alle Einträge aus der Datenbank ausliest. Danach werden Objekte erzeugt und mit den Werten aus der Datenbank belegt und in die Liste eingetragen.\\
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/setcontent.png}
+\caption{Füllen der Objektliste}
+\label{listklasse}
+\end{center}
+\end{figure}
+\newpage
+Ein JSON Objekt baue ich wie alle anderen Objekte auf, aber die \textit{delete} und \textit{save} Methoden benötige ich nicht.\\
+Bei der JSON Objektliste verwende ich eine Methode \textit{parseJson} um die erhaltene Json nach Programm relevanten Daten zu untersuchen und Objekte mit diesen Werten zu erstellen, die dann in die Liste eingetragen werden.
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/parseJson.png}
+\caption{Füllen der Json Objektliste}
+\label{parsejson}
+\end{center}
+\end{figure}
 
-
+\newpage
 \subsection{Benutzeroberfläche}
+\subsubsection{Design der Oberfläche}
+Da ich nur eine Woche Zeit hatte um das Projekt zu realisieren habe ich mich für ein sehr einfaches Design entschieden.\\
+Eine Form auf der mehrere Toolbars liegen mit 2 mal JTable reichen zum erfüllen der Aufgabe. In die Toolbars habe ich jeweils JTextfields, JLabels und JButtons gelegt.
+Die JTable habe ich über rechtsklick auf den aufgespannten JTable mit einem Scrollpane umgeben, damit alle Daten erreicht werden können.\\
+In einer späteren phase des Designs habe ich den beiden Suchfeldern noch einzelne Buttons hinzugefügt, die notwendig sind um alle Aufgaben des Programms zu realisieren. Das war zu Beginn der Programmierung noch nicht abzusehen.\\
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/alpha.png}
+\caption{Ersters Ausführbares Design}
+\label{alpha}
+\end{center}
+\end{figure}
+
+
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/beta.png}
+\caption{Zweites Ausführbares Design}
+\label{beta}
+\end{center}
+\end{figure}
+
+\newpage
+
+Den oberen JTable \textit{grdMain} benutze ich zur Ausgabe der Tabelle \textit{tblBooks} aus der Datenbank. Den unteren JTable \textit{grdWeb} benutze ich zur Ausgabe der aus dem Netz über die API geholten Werte aus der JSON Liste.\\
+Beide Tabellen erhalten feste Spalten mit den Eigenschaften eines Buches, wobei ich den zugehörigen Primärschlüssel eines Buches aus der Datenbank in der Spalte \textit{ID} unsichtbar ausgeben lasse, indem ich die Spaltenbreite auf 0 setze.\\
+Zum füllen eines JTable benötigt man ein \textit{model}, dass mit Objekten gefüllt wird.
+Indem ich dem Tabel das model mit dem Objekt mit den Spalten übergebe, erhalte ich die Header.\\
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/model.png}
+\caption{Objekt mit den Header Spalten und dem model}
+\label{model}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/setheader.png}
+\caption{Setzen der Header}
+\label{header}
+\end{center}
+\end{figure}
+
+\subsubsection{Listen erzeugen und füllen}
+Die Listen werden als Objektlisten in der \textbf{UMain} instanziiert und gefüllt.
+Beim hinzufügen, bearbeiten und löschen werden in den Ereignissen der Buttons Methoden aufgerufen, die über die Eigenschaften der Listen die Änderungen vornehmen und mit den Methoden der Objekte die Datenbank aktualisieren.
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/listcreate.png}
+\caption{Erzeugen der Listen}
+\label{listcreate}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/setlistcontent.png}
+\caption{Füllen der Listen}
+\label{listcontent}
+\end{center}
+\end{figure}
+
+
+
+\subsubsection{Listen ausgeben}
+
+Bei der Ausgabe der Listen werden die vorher istanziierten models der JTable mit allen Werten der Listen gefüllt und angezeigt. Beim Auswählen eines Objektes aus der Anzeige wird über ein \textbf{Maus Klick Event} und einer Methode die aktuelle Reihe als Index zwischen gespeichert. Darüber kann das jeweilige Objekt bearbeitet werden.\\
+Bei der Suchfunktion im oberen Teil wird nur nach einer vorhandenen Isbn in der Liste gesucht.\\
+Bei der Suche im Web über die\textbf{GoogleBook API} wird nach allen Eigenschaften eines Buch Objektes gesucht.\\ 
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/setgridcontent.png}
+\caption{Ausgabe im JTable \textit{grdMain}}
+\label{setgridcontent}
+\end{center}
+\end{figure}
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/webgrid.png}
+\caption{Ausgabe im JTable \textit{grdWeb}}
+\label{webgrid}
+\end{center}
+\end{figure}
+
+
+\newpage
+
 \subsection{Test}
 
+Beim testen der Suchfunktionen traten Fehler bei der verwendung mehrer Wörter auf, da noch keine UTF. Net encoding implementiert ist und die einzelnen leerzeichen zwischen den Wörtern noch nicht richtig ersetzt werden. Außerdem kam es bei manchen Suchbegriffen zu einem Fehler bei der Zuordnung des Knotenpunktes \textit{subtitle} für die Eigenschaft \textit{Genre}.\\
+Außerdem kann es noch beim manuellen Erstellen von neuen Büchern zu doppelten Einträgen in der Datenbank kommen.\\
+
+\begin{figure}[h]
+\begin{center}
+\includegraphics[width=15cm]{img/test.png}
+\caption{Testen einer Internetsuche}
+\label{test}
+\end{center}
+\end{figure}
