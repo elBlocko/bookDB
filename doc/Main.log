@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.10.4)  5 OCT 2021 08:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.6) (preloaded format=pdflatex 2021.10.4)  8 OCT 2021 10:58
 entering extended mode
 **./Main.tex
 (Main.tex
@@ -551,7 +551,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 16--20
 
  []
 
-<img/entwurf.png, id=87, 520.94624pt x 243.15843pt>
+<img/entwurf.png, id=99, 520.94624pt x 243.15843pt>
 File: img/entwurf.png Graphic file (type png)
 <use img/entwurf.png>
 Package pdftex.def Info: img/entwurf.png  used on input line 29.
@@ -570,7 +570,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 37--43
 
  []
 
-<img/mainpap.png, id=92, 493.845pt x 541.27219pt>
+<img/mainpap.png, id=104, 493.845pt x 541.27219pt>
 File: img/mainpap.png Graphic file (type png)
 <use img/mainpap.png>
 Package pdftex.def Info: img/mainpap.png  used on input line 46.
@@ -587,14 +587,61 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 \openout2 = `content/003_Implementierung.aux'.
 
 
-(content/003_Implementierung.tex) [8
+(content/003_Implementierung.tex
+Underfull \hbox (badness 10000) in paragraph at lines 17--20
+
+ []
+
+[8
 
 
 
 ]
+<img/datenbank.png, id=123, 764.10469pt x 244.66406pt>
+File: img/datenbank.png Graphic file (type png)
+<use img/datenbank.png>
+Package pdftex.def Info: img/datenbank.png  used on input line 70.
+(pdftex.def)             Requested size: 426.79134pt x 136.65627pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 70--71
+ [] 
+ []
+
+[9]
+Underfull \hbox (badness 10000) in paragraph at lines 76--80
+
+ []
+
+<img/connect.png, id=129, 762.59906pt x 445.665pt>
+File: img/connect.png Graphic file (type png)
+<use img/connect.png>
+Package pdftex.def Info: img/connect.png  used on input line 90.
+(pdftex.def)             Requested size: 426.79134pt x 249.41429pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 90--91
+ [] 
+ []
+
+[10 <./img/datenbank.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 96--104
+
+ []
+
+[11 <./img/connect.png>]
+<img/getjson.png, id=142, 792.71156pt x 563.85657pt>
+File: img/getjson.png Graphic file (type png)
+<use img/getjson.png>
+Package pdftex.def Info: img/getjson.png  used on input line 109.
+(pdftex.def)             Requested size: 426.79134pt x 303.58322pt.
+
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 109--110
+ [] 
+ []
+
+[12 <./img/getjson.png>]) [13]
 \openout2 = `content/004_Dokumentation.aux'.
 
- (content/004_Dokumentation.tex) [9
+ (content/004_Dokumentation.tex) [14
 
 
 
@@ -602,7 +649,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 \openout2 = `content/005_Fazit.aux'.
 
 
-(content/005_Fazit.tex) [10
+(content/005_Fazit.tex) [15
 
 
 
@@ -613,11 +660,11 @@ Package rerunfilecheck Info: File `Main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 13081 strings out of 478864
- 221765 string characters out of 2848660
- 691888 words of memory out of 3000000
- 30752 multiletter control sequences out of 15000+600000
- 410337 words of font info for 51 fonts, out of 8000000 for 9000
+ 13131 strings out of 478864
+ 222483 string characters out of 2848660
+ 693888 words of memory out of 3000000
+ 30782 multiletter control sequences out of 15000+600000
+ 410683 words of font info for 52 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  108i,9n,108p,10619b,393s stack positions out of 5000i,500n,10000p,200000b,80000s
  <C:\Users\PC502\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm
@@ -625,10 +672,11 @@ Here is how much of TeX's memory you used:
 ts/cm/cmbx10.pfb><C:/Users/PC502/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmr10.pfb><C:/Users/PC502/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/public/amsfonts/cm/cmr12.pfb><C:/Users/PC502/AppData/Local/Programs/MiKTeX/
-fonts/type1/public/amsfonts/cm/cmssbx10.pfb>
-Output written on Main.pdf (10 pages, 4239582 bytes).
+fonts/type1/public/amsfonts/cm/cmssbx10.pfb><C:/Users/PC502/AppData/Local/Progr
+ams/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on Main.pdf (15 pages, 4368040 bytes).
 PDF statistics:
- 237 PDF objects out of 1000 (max. 8388607)
- 44 named destinations out of 1000 (max. 500000)
- 240 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 309 PDF objects out of 1000 (max. 8388607)
+ 60 named destinations out of 1000 (max. 500000)
+ 311 words of extra memory for PDF output out of 10000 (max. 10000000)
 
